@@ -4,6 +4,12 @@
       *ngFor="let tile of row; let colIndex = index"
       class="tile"
       [ngClass]="tile"
-    ></div>
+    >
+      <app-player
+        *ngIf="player.x === colIndex && player.y === rowIndex"
+        [x]="player.x"
+        [y]="player.y"
+      ></app-player>
+    </div>
   </div>
 </div>

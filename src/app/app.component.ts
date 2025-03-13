@@ -5,7 +5,7 @@ import { MapComponent } from '../components/map/map.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RessourcesWindowComponent, MapComponent],
+  imports: [RouterOutlet, MapComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
