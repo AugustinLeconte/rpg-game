@@ -1,0 +1,9 @@
+<div class="map">
+  <div *ngFor="let row of mapData; let rowIndex = index" class="row">
+    <div
+      *ngFor="let tile of row; let colIndex = index"
+      class="tile"
+      [ngClass]="tile"
+    ></div>
+  </div>
+</div>

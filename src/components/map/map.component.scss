@@ -1,0 +1,25 @@
+.map {
+  display: grid;
+  grid-template-columns: repeat(40, 32px);
+  grid-template-rows: repeat(40, 32px);
+  gap: 2px;
+}
+
+.tile {
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+}
+
+.tile.grass {
+  background-color: lightgreen;
+}
+.tile.water {
+  background-color: blue;
+}
+.tile.forest {
+  background-color: green;
+}
+.tile.montain {
+  background-color: gray;
+}
