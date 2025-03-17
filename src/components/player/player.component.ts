@@ -8,4 +8,6 @@ import { Component, Input } from '@angular/core';
 export class PlayerComponent {
   @Input() x!: number;
   @Input() y!: number;
+
+  constructor() {}
 }

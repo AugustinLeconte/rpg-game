@@ -1,0 +1,6 @@
+<div class="connectedPlayers" *ngIf="showPlayersConnected">
+  <h3>Joueurs connectés :</h3>
+  <div *ngFor="let player of players">
+    {{ player.name }}
+  </div>
+</div>

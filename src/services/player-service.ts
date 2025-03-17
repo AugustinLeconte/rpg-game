@@ -1,12 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { WebsocketService } from './websocket.service';
+
+export interface Player {
+  id: string;
+  username: string;
+  position: { x: number; y: number };
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
-  player = { x: 5, y: 5 };
+  player = { id: '1234', x: 5, y: 5 };
 
-  constructor() {}
+  constructor(private wsService: WebsocketService) {}
 
   getPlayerPosition() {
     return this.player;
@@ -40,6 +47,7 @@ export class PlayerService {
     ) {
       this.player.x = newX;
       this.player.y = newY;
+      this.wsService.sendMove(this.player.id, this.player.x, this.player.y);
     }
   }
 }
