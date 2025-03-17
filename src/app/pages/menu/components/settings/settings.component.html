@@ -1,0 +1,15 @@
+<div>
+  <label>Pseudo : </label>
+  <div *ngIf="!updatingName">
+    <span> {{ user.username }} </span>
+    <button (click)="updatingName = !updatingName">Modifier</button>
+  </div>
+  <div *ngIf="updatingName">
+    <input [(ngModel)]="newUsername" /><button
+      (click)="updatingName = !updatingName"
+    >
+      X</button
+    ><button (click)="updateName()">V</button>
+  </div>
+</div>
+<div>Commandes:</div>

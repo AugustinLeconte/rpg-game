@@ -1,0 +1,74 @@
+:host(app-main-menu) {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.mainMenu {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background: beige;
+  width: 40%;
+  border: solid 2px black;
+  height: 50vh;
+  border-radius: 10px;
+}
+
+.mainMenu button {
+  min-width: 50%;
+  min-height: 5vh;
+  width: fit-content;
+  height: fit-content;
+  color: white;
+  background: black;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.skinSelector {
+  border: solid 1px black;
+  background: white;
+  color: black;
+  width: 14vw;
+  height: 20vh;
+  padding: 5px;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-start;
+}
+
+.profileMenu {
+  position: absolute;
+  top: 0px;
+  display: flex;
+  height: 40px;
+  right: 0px;
+  background: black;
+  color: white;
+  align-items: center;
+}
+
+.userName {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 130px;
+}
+
+.settingsButton {
+  height: 40px;
+  width: 40px;
+  background: inherit;
+  color: inherit;
+  border-radius: 8px;
+}
