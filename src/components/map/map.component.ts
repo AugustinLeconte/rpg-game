@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { MapService } from '../../services/map-service';
 import { CommonModule } from '@angular/common';
-import { Player, PlayerService } from '../../services/player-service';
+import { PlayerService } from '../../services/player-service';
 import { PlayerComponent } from '../player/player.component';
 import { WebsocketService } from '../../services/websocket.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { UserInterface, UserService } from '../../services/user.service';
 import { PlayersConnectedComponent } from '../../app/pages/ingame/components/players-connected/players-connected.component';
+import { LevelComponent } from '../../app/pages/ingame/components/level/level.component';
 
 @Component({
   selector: 'app-map',
@@ -16,6 +17,7 @@ import { PlayersConnectedComponent } from '../../app/pages/ingame/components/pla
     PlayerComponent,
     FormsModule,
     PlayersConnectedComponent,
+    LevelComponent,
   ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',

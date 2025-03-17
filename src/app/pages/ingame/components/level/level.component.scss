@@ -1,0 +1,30 @@
+.ingameLevelContainer {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 200px;
+  height: 100px;
+  border-radius: 10px;
+  border: 2px solid black;
+  background: green;
+  color: white;
+  padding: 10px;
+  display: grid;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-evenly;
+  justify-items: center;
+  align-items: center;
+}
+
+.ingameLevelText {
+  margin-top: 5px;
+  text-decoration: underline;
+}
+
+.xpLeft {
+  margin-top: -15px;
+  font-size: 10px;
+  font-style: italic;
+}
