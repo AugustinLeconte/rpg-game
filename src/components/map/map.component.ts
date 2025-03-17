@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { UserInterface, UserService } from '../../services/user.service';
 import { PlayersConnectedComponent } from '../../app/pages/ingame/components/players-connected/players-connected.component';
 import { LevelComponent } from '../../app/pages/ingame/components/level/level.component';
+import { SpellBarComponent } from '../../app/pages/ingame/components/spell-bar/spell-bar.component';
 
 @Component({
   selector: 'app-map',
@@ -18,6 +19,7 @@ import { LevelComponent } from '../../app/pages/ingame/components/level/level.co
     FormsModule,
     PlayersConnectedComponent,
     LevelComponent,
+    SpellBarComponent,
   ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',
