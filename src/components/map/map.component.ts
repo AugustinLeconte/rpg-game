@@ -10,6 +10,7 @@ import { UserInterface, UserService } from '../../services/user.service';
 import { PlayersConnectedComponent } from '../../app/pages/ingame/components/players-connected/players-connected.component';
 import { LevelComponent } from '../../app/pages/ingame/components/level/level.component';
 import { SpellBarComponent } from '../../app/pages/ingame/components/spell-bar/spell-bar.component';
+import { IngameChatComponent } from '../../app/pages/ingame/components/ingame-chat/ingame-chat.component';
 
 @Component({
   selector: 'app-map',
@@ -20,6 +21,7 @@ import { SpellBarComponent } from '../../app/pages/ingame/components/spell-bar/s
     PlayersConnectedComponent,
     LevelComponent,
     SpellBarComponent,
+    IngameChatComponent,
   ],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',

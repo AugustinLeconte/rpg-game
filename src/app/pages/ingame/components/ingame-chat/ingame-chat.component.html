@@ -1,0 +1,14 @@
+<div class="chatContainer">
+  <div class="messageList">
+    <span *ngFor="let message of messages"
+      >Morgustin (10h02): {{ message }}</span
+    >
+  </div>
+  <input
+    class="messageTyped"
+    [(ngModel)]="typedMessage"
+    placeholder="Message que je tape"
+  /><button class="sendMessageButton" type="submit" (click)="sendMessage()">
+    V
+  </button>
+</div>

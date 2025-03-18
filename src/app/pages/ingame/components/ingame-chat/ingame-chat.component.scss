@@ -1,0 +1,43 @@
+.chatContainer {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 300px;
+  height: 20px;
+  border-radius: 10px;
+  border: 2px solid white;
+  background: brown;
+  color: white;
+  padding: 10px;
+  display: flex;
+}
+
+.messageList:hover {
+  height: 200px;
+  overflow: scroll;
+}
+
+.messageList {
+  position: fixed;
+  bottom: 45px;
+  left: 10px;
+  width: 300px;
+  height: 50px;
+  border: 2px solid white;
+  background: brown;
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: overlay;
+}
+
+.messageTyped {
+  height: 20px;
+  width: 100%;
+}
+
+.sendMessageButton {
+  height: 26px;
+  width: 26px;
+}
