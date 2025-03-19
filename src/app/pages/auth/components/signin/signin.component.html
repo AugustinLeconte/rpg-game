@@ -1,0 +1,14 @@
+<div>
+  <h1>Créer un compte</h1>
+
+  <label>Nom</label>
+  <input [(ngModel)]="username" type="text" />
+
+  <label>Email</label>
+  <input [(ngModel)]="email" type="email" />
+
+  <label>Mot de passe</label>
+  <input [(ngModel)]="password" type="password" />
+
+  <button (click)="signin()">Créer</button>
+</div>

@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import {
   UserInterface,
-  UserService,
-} from '../../../../../services/user.service';
+  UserInterfaceService,
+} from '../../../../../services/user-interface.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -17,7 +17,7 @@ export class SettingsComponent implements OnInit {
   user: UserInterface = { username: '' };
   newUsername: string = '';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserInterfaceService) {}
 
   ngOnInit(): void {
     this.user = this.userService.getUser();

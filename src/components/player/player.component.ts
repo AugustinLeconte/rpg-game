@@ -15,7 +15,7 @@ export class PlayerComponent implements OnInit {
   constructor(private playerService: PlayerService) {}
 
   ngOnInit() {
-    setInterval(() => this.updateAnimation(), 200);
+    //setInterval(() => this.updateAnimation(), 200);
     window.addEventListener('keydown', (event) => this.handleKeyDown(event));
   }
 
@@ -29,9 +29,9 @@ export class PlayerComponent implements OnInit {
     event.preventDefault();
 
     if (keyMap[event.key]) {
-      this.isWalking = true;
+      //this.isWalking = true;
       this.playerService.movePlayer(keyMap[event.key]);
-      setTimeout(() => (this.isWalking = false), 200);
+      //setTimeout(() => (this.isWalking = false), 10);
     }
   }
 

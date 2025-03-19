@@ -1,0 +1,11 @@
+<div class="authContent">
+  <app-login *ngIf="isLogin"></app-login>
+  <app-signin *ngIf="!isLogin"></app-signin>
+
+  <span *ngIf="!isLogin"
+    >Déjà un compte ? <a (click)="isLogin = !isLogin">Se connecter</a></span
+  >
+  <span *ngIf="isLogin"
+    >Pas encore de compte <a (click)="isLogin = !isLogin">En créer un</a></span
+  >
+</div>

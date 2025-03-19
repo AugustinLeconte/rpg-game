@@ -6,7 +6,10 @@ import { PlayerComponent } from '../player/player.component';
 import { WebsocketService } from '../../services/websocket.service';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { UserInterface, UserService } from '../../services/user.service';
+import {
+  UserInterface,
+  UserInterfaceService,
+} from '../../services/user-interface.service';
 import { PlayersConnectedComponent } from '../../app/pages/ingame/components/players-connected/players-connected.component';
 import { LevelComponent } from '../../app/pages/ingame/components/level/level.component';
 import { SpellBarComponent } from '../../app/pages/ingame/components/spell-bar/spell-bar.component';
@@ -36,7 +39,7 @@ export class MapComponent {
     private mapService: MapService,
     private wsService: WebsocketService,
     private playerService: PlayerService,
-    private userService: UserService
+    private userService: UserInterfaceService
   ) {}
 
   connect() {}
