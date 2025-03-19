@@ -28,7 +28,7 @@ export class WebsocketService {
     });
 
     this.socket.on('location', (position: { x: number; y: number }) => {
-      console.log(position);
+      //console.log(position);
     });
   }
 

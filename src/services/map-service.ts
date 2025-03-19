@@ -15,6 +15,10 @@ export class MapService {
     return this._http.get<string[][]>('http://localhost:3000/map');
   }
 
+  getMap(): string[][] {
+    return this.map.value;
+  }
+
   setMap(map: string[][]) {
     this.map.next(map);
   }

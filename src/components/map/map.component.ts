@@ -44,7 +44,6 @@ export class MapComponent {
   ngOnInit() {
     this.user = this.userService.getUser();
     if (!this.user) return;
-    window.addEventListener('keydown', (event) => this.handleKeyDown(event));
 
     if (this.user.username.trim()) {
       this.wsService.joinGame(this.user.username);
@@ -55,19 +54,6 @@ export class MapComponent {
     });
 
     this.player = this.playerService.getPlayerPosition();
-  }
-
-  handleKeyDown(event: KeyboardEvent) {
-    const keyMap: { [key: string]: string } = {
-      ArrowUp: 'left',
-      ArrowDown: 'right',
-      ArrowLeft: 'up',
-      ArrowRight: 'down',
-    };
-
-    if (keyMap[event.key]) {
-      this.playerService.movePlayer(keyMap[event.key], this.mapData);
-    }
   }
 
   ngOnDestroy() {

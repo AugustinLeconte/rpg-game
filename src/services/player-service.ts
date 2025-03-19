@@ -1,5 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { WebsocketService } from './websocket.service';
+import { MapService } from './map-service';
 
 export interface Player {
   id: string;
@@ -13,28 +14,32 @@ export interface Player {
 export class PlayerService {
   player = { id: '1234', x: 5, y: 5 };
 
-  constructor(private wsService: WebsocketService) {}
+  constructor(
+    private wsService: WebsocketService,
+    private mapService: MapService
+  ) {}
 
   getPlayerPosition() {
     return this.player;
   }
 
-  movePlayer(direction: string, mapData: string[][]) {
+  movePlayer(direction: string) {
     let newX = this.player.x;
     let newY = this.player.y;
+    let mapData: string[][] = this.mapService.getMap();
 
     switch (direction) {
       case 'up':
-        newY--;
+        newY -= 1;
         break;
       case 'down':
-        newY++;
+        newY += 1;
         break;
       case 'left':
-        newX--;
+        newX -= 1;
         break;
       case 'right':
-        newX++;
+        newX += 1;
         break;
     }
 
@@ -47,7 +52,7 @@ export class PlayerService {
     ) {
       this.player.x = newX;
       this.player.y = newY;
-      this.wsService.sendMove(this.player.id, this.player.x, this.player.y);
+      //this.wsService.sendMove(this.player.id, this.player.x, this.player.y);
     }
   }
 }

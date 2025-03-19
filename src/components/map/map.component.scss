@@ -1,25 +1,24 @@
 .map {
   display: grid;
-  grid-template-columns: repeat(40, 32px);
-  grid-template-rows: repeat(40, 32px);
-  gap: 2px;
+  grid-template-columns: repeat(40, 64px);
+  grid-template-rows: repeat(40, 64px);
 }
 
 .tile {
-  width: 32px;
-  height: 32px;
-  border-radius: 2px;
+  width: 64px;
+  height: 64px;
+  background-color: lightgreen;
 }
 
 .tile.grass {
-  background-color: lightgreen;
+  //background-image: url("/assets/images/grass.png");
 }
 .tile.water {
   background-color: blue;
 }
 .tile.forest {
-  background-color: green;
+  background-image: url("/assets/images/spruce.png");
 }
 .tile.montain {
-  background-color: gray;
+  background-image: url("/assets/images/rock.png");
 }
