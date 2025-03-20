@@ -18,3 +18,17 @@
     background-position: -128px 0px;
   }
 }
+
+.username {
+  position: relative;
+  top: -68px;
+  color: brown;
+  max-width: 100px;
+}
+
+.playerObject {
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+}

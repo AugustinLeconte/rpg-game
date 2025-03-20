@@ -41,6 +41,10 @@ export class PlayerComponent implements OnInit {
     }
   }
 
+  getUsername() {
+    return this.player.socketId;
+  }
+
   updateAnimation() {
     if (this.isWalking) {
       this.frameIndex = (this.frameIndex + 1) % 4;
