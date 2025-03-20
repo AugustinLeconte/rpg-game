@@ -8,9 +8,7 @@
       [ngClass]="tile"
     >
       <app-player
-        *ngIf="player.x === colIndex && player.y === rowIndex"
-        [x]="player.x"
-        [y]="player.y"
+        *ngIf="player.position.x === colIndex && player.position.y === rowIndex"
       ></app-player>
     </div>
   </div>

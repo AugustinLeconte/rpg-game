@@ -19,17 +19,9 @@ export class PlayersConnectedComponent implements OnInit, OnDestroy {
   constructor(private wsService: WebsocketService) {}
 
   ngOnInit(): void {
-    window.addEventListener('keydown', (event) => this.handleKeyPressed(event));
-
     this.wsSubscription = this.wsService.players$.subscribe((players) => {
       this.players = players;
     });
-  }
-
-  handleKeyPressed(event: KeyboardEvent) {
-    if (event.key == 'c') {
-      this.showPlayersConnected = !this.showPlayersConnected;
-    }
   }
 
   ngOnDestroy(): void {

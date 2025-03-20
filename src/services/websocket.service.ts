@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
-import { Player } from './player-service';
+import { Player, PlayerService } from './player-service';
 import { MapService } from './map-service';
 
 @Injectable({
@@ -12,7 +12,10 @@ export class WebsocketService {
   private players = new BehaviorSubject<Player[]>([]);
   players$ = this.players.asObservable();
 
-  constructor(private mapService: MapService) {
+  constructor(
+    private mapService: MapService,
+    private readonly playerService: PlayerService
+  ) {
     this.socket = io('http://localhost:3000');
 
     this.socket.on('playerJoined', (player: Player) => {
@@ -20,7 +23,16 @@ export class WebsocketService {
     });
 
     this.socket.on('updatePlayers', (players: Player[]) => {
+      const thisPlayer = players.filter(
+        (player) => player.socketId == this.playerService.getPlayer().socketId
+      )[0];
+      if (thisPlayer) this.playerService.setPlayer(thisPlayer);
+      console.log('reçu');
       this.players.next(players);
+    });
+
+    this.socket.on('connected', (socketId: string) => {
+      this.playerService.addSocketId(socketId);
     });
 
     this.socket.on('map', (map: string[][]) => {
@@ -36,7 +48,7 @@ export class WebsocketService {
     this.socket.emit('playerJoin', { username });
   }
 
-  sendMove(id: string, x: number, y: number) {
-    this.socket.emit('movePlayer', { id, x, y });
+  sendMove(id: string, direction: string) {
+    this.socket.emit('movePlayer', { id, direction });
   }
 }

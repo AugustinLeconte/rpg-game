@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { PlayerService } from '../../services/player-service';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Player, PlayerService } from '../../services/player-service';
+import { WebsocketService } from '../../services/websocket.service';
 
 @Component({
   selector: 'app-player',
@@ -7,14 +8,19 @@ import { PlayerService } from '../../services/player-service';
   styleUrls: ['./player.component.scss'],
 })
 export class PlayerComponent implements OnInit {
-  @Input() x!: number;
-  @Input() y!: number;
   frameIndex = 0;
   isWalking = false;
+  private player!: Player;
 
-  constructor(private playerService: PlayerService) {}
+  constructor(
+    private playerService: PlayerService,
+    private readonly wsService: WebsocketService
+  ) {}
 
   ngOnInit() {
+    this.playerService.player$.subscribe((player) => {
+      this.player = player;
+    });
     //setInterval(() => this.updateAnimation(), 200);
     window.addEventListener('keydown', (event) => this.handleKeyDown(event));
   }
@@ -28,10 +34,10 @@ export class PlayerComponent implements OnInit {
     };
     event.preventDefault();
 
-    if (keyMap[event.key]) {
-      //this.isWalking = true;
-      this.playerService.movePlayer(keyMap[event.key]);
-      //setTimeout(() => (this.isWalking = false), 10);
+    if (keyMap[event.key] && !event.repeat && !this.isWalking) {
+      this.isWalking = true;
+      this.wsService.sendMove(this.player.socketId, keyMap[event.key]);
+      setTimeout(() => (this.isWalking = false), 3000);
     }
   }
 

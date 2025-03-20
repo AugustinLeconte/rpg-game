@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MapService } from '../../services/map-service';
 import { CommonModule } from '@angular/common';
-import { PlayerService } from '../../services/player-service';
+import { Player, PlayerService } from '../../services/player-service';
 import { PlayerComponent } from '../player/player.component';
 import { WebsocketService } from '../../services/websocket.service';
 import { Subscription } from 'rxjs';
@@ -31,8 +31,9 @@ import { IngameChatComponent } from '../../app/pages/ingame/components/ingame-ch
 })
 export class MapComponent {
   mapData: string[][] = [];
-  player = { x: 5, y: 5 };
+  player!: Player;
   private mapSubcription!: Subscription;
+  private playerSubcription!: Subscription;
   private user: UserInterface = {} as UserInterface;
 
   constructor(
@@ -41,8 +42,6 @@ export class MapComponent {
     private playerService: PlayerService,
     private userService: UserInterfaceService
   ) {}
-
-  connect() {}
 
   ngOnInit() {
     this.user = this.userService.getUser();
@@ -56,7 +55,9 @@ export class MapComponent {
       this.mapData = map;
     });
 
-    this.player = this.playerService.getPlayerPosition();
+    this.playerSubcription = this.playerService.player$.subscribe((player) => {
+      this.player = player;
+    });
   }
 
   ngOnDestroy() {

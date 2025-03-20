@@ -19,6 +19,13 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   loginUser(username: string, password: string) {
+    localStorage.setItem('userId', '123');
+    this.user.next({
+      id: '123',
+      userName: username,
+      email: '',
+      commands: {} as Map<string, string>,
+    });
     return this.http.get<string[][]>('http://localhost:3000/map');
   }
 
