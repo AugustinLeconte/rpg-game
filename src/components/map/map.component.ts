@@ -61,6 +61,7 @@ export class MapComponent {
   }
 
   ngOnDestroy() {
+    this.playerSubcription.unsubscribe();
     this.mapSubcription.unsubscribe();
   }
 }

@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../../../../../services/user.service';
 
 @Component({
   selector: 'app-signin',
@@ -17,7 +18,11 @@ export class SigninComponent {
   isErrorWhenSigning: boolean = false;
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
   async signin() {
     this.authService
@@ -25,7 +30,7 @@ export class SigninComponent {
       .subscribe({
         next: (res: any) => {
           if (res.status == '201') {
-            //this.userService.setUser(res);
+            this.userService.setUser(res.data);
             this.router.navigate(['']);
           } else {
             this.isErrorWhenSigning = true;
