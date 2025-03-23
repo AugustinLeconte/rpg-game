@@ -6,10 +6,10 @@ import {
   Input,
   ViewChild,
 } from '@angular/core';
-import { MoneyService } from '../../services/money-service';
-import { RockService } from '../../services/rock-service';
-import { WoodService } from '../../services/wood-service';
-import { WheatService } from '../../services/wheat-service';
+import { MoneyService } from '../../app/pages/ingame/services/money-service';
+import { RockService } from '../../app/pages/ingame/services/rock-service';
+import { WoodService } from '../../app/pages/ingame/services/wood-service';
+import { WheatService } from '../../app/pages/ingame/services/wheat-service';
 import {
   BuildingType,
   BUILDINGS,

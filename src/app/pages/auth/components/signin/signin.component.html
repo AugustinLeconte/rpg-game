@@ -10,4 +10,8 @@
   <input [(ngModel)]="password" type="password" />
 
   <button (click)="signin()">Créer</button>
+
+  <div class="error" *ngIf="isErrorWhenSigning">
+    {{ errorMessage }}
+  </div>
 </div>

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   UserInterface,
   UserInterfaceService,
-} from '../../../../../services/user-interface.service';
+} from '../../../ingame/services/user-interface.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -17,15 +17,15 @@ export class SettingsComponent implements OnInit {
   user: UserInterface = { username: '' };
   newUsername: string = '';
 
-  constructor(private userService: UserInterfaceService) {}
+  constructor(private userInterfaceService: UserInterfaceService) {}
 
   ngOnInit(): void {
-    this.user = this.userService.getUser();
+    this.user = this.userInterfaceService.getUser();
     this.newUsername = this.user.username;
   }
 
   updateName() {
-    this.userService.setUserName(this.newUsername);
+    this.userInterfaceService.setUserName(this.newUsername);
     this.user.username = this.newUsername;
     this.updatingName = false;
   }

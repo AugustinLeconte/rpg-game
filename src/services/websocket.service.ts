@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 import { Player, PlayerService } from './player-service';
-import { MapService } from './map-service';
+import { MapService } from '../app/pages/ingame/services/map-service';
 
 @Injectable({
   providedIn: 'root',

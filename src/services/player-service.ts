@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { WebsocketService } from './websocket.service';
-import { MapService } from './map-service';
+import { MapService } from '../app/pages/ingame/services/map-service';
 import { BehaviorSubject } from 'rxjs';
 
 export interface Player {

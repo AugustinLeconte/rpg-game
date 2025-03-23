@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { MoneyService } from '../../services/money-service';
+import { MoneyService } from '../../app/pages/ingame/services/money-service';
 import {
   BuildingType,
   BUILDINGS,
   BuildingData,
   Building,
 } from '../../app/models/building-data';
-import { RockService } from '../../services/rock-service';
-import { WoodService } from '../../services/wood-service';
-import { WheatService } from '../../services/wheat-service';
+import { RockService } from '../../app/pages/ingame/services/rock-service';
+import { WoodService } from '../../app/pages/ingame/services/wood-service';
+import { WheatService } from '../../app/pages/ingame/services/wheat-service';
 
 export interface Tile {
   x: number;

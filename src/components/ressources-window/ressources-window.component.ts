@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { MoneyService } from '../../services/money-service';
-import { WheatService } from '../../services/wheat-service';
-import { RockService } from '../../services/rock-service';
-import { WoodService } from '../../services/wood-service';
+import { MoneyService } from '../../app/pages/ingame/services/money-service';
+import { WheatService } from '../../app/pages/ingame/services/wheat-service';
+import { RockService } from '../../app/pages/ingame/services/rock-service';
+import { WoodService } from '../../app/pages/ingame/services/wood-service';
 
 @Component({
   selector: 'app-ressources-window',

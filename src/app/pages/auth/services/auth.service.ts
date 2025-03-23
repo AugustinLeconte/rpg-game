@@ -18,18 +18,24 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  loginUser(username: string, password: string) {
+  loginUser(contact: string, password: string) {
     localStorage.setItem('userId', '123');
     this.user.next({
       id: '123',
-      userName: username,
+      userName: contact,
       email: '',
       commands: {} as Map<string, string>,
     });
-    return this.http.get<string[][]>('http://localhost:3000/map');
+    const variables = 'contact=' + contact + '&password=' + password;
+    return this.http.get('http://localhost:3000/users/login&' + variables);
   }
 
   signinUser(username: string, email: string, password: string) {
-    return this.http.get<string[][]>('http://localhost:3000/map');
+    return this.http.post('http://localhost:3000/users', {
+      username,
+      email,
+      password,
+      wantNewsletter: false,
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MapService } from '../../services/map-service';
+import { MapService } from '../../app/pages/ingame/services/map-service';
 import { CommonModule } from '@angular/common';
 import { Player, PlayerService } from '../../services/player-service';
 import { PlayerComponent } from '../player/player.component';
@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import {
   UserInterface,
   UserInterfaceService,
-} from '../../services/user-interface.service';
+} from '../../app/pages/ingame/services/user-interface.service';
 import { PlayersConnectedComponent } from '../../app/pages/ingame/components/players-connected/players-connected.component';
 import { LevelComponent } from '../../app/pages/ingame/components/level/level.component';
 import { SpellBarComponent } from '../../app/pages/ingame/components/spell-bar/spell-bar.component';
@@ -40,11 +40,11 @@ export class MapComponent {
     private mapService: MapService,
     private wsService: WebsocketService,
     private playerService: PlayerService,
-    private userService: UserInterfaceService
+    private userInterfaceService: UserInterfaceService
   ) {}
 
   ngOnInit() {
-    this.user = this.userService.getUser();
+    this.user = this.userInterfaceService.getUser();
     if (!this.user) return;
 
     if (this.user.username.trim()) {

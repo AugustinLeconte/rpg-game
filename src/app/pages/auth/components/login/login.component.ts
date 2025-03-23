@@ -16,8 +16,12 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  login() {
-    this.authService.loginUser(this.username, this.password);
-    this.router.navigate(['']);
+  async login() {
+    this.authService.loginUser(this.username, this.password).subscribe({
+      next: (result: any) => {
+        console.log(result);
+      },
+    });
+    //this.router.navigate(['']);
   }
 }
