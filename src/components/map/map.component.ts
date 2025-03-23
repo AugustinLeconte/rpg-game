@@ -6,14 +6,11 @@ import { PlayerComponent } from '../player/player.component';
 import { WebsocketService } from '../../services/websocket.service';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import {
-  UserInterface,
-  UserInterfaceService,
-} from '../../app/pages/ingame/services/user-interface.service';
 import { PlayersConnectedComponent } from '../../app/pages/ingame/components/players-connected/players-connected.component';
 import { LevelComponent } from '../../app/pages/ingame/components/level/level.component';
 import { SpellBarComponent } from '../../app/pages/ingame/components/spell-bar/spell-bar.component';
 import { IngameChatComponent } from '../../app/pages/ingame/components/ingame-chat/ingame-chat.component';
+import { User, UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-map',
@@ -34,22 +31,20 @@ export class MapComponent {
   player!: Player;
   private mapSubcription!: Subscription;
   private playerSubcription!: Subscription;
-  private user: UserInterface = {} as UserInterface;
+  private userSubscription!: Subscription;
+  private user!: User;
 
   constructor(
     private mapService: MapService,
     private wsService: WebsocketService,
     private playerService: PlayerService,
-    private userInterfaceService: UserInterfaceService
+    private userService: UserService
   ) {}
 
   ngOnInit() {
-    this.user = this.userInterfaceService.getUser();
-    if (!this.user) return;
-
-    if (this.user.username.trim()) {
-      this.wsService.joinGame(this.user.username);
-    }
+    this.userSubscription = this.userService.user$.subscribe((user) => {
+      this.user = user;
+    });
 
     this.mapSubcription = this.mapService.map$.subscribe((map) => {
       this.mapData = map;
@@ -58,10 +53,16 @@ export class MapComponent {
     this.playerSubcription = this.playerService.player$.subscribe((player) => {
       this.player = player;
     });
+
+    if (!this.user) return;
+    if (this.user.username && this.user.username.trim()) {
+      this.wsService.joinGame(this.user.username);
+    } else this.wsService.joinGame('New Player');
   }
 
   ngOnDestroy() {
     this.playerSubcription.unsubscribe();
     this.mapSubcription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 }

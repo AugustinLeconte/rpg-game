@@ -13,10 +13,6 @@ export interface UserInterface {
 export class UserInterfaceService {
   user: UserInterface = { username: 'MorgustinLeNain' };
 
-  getUserName(): string {
-    return this.user.username;
-  }
-
   setUserName(newUsername: string) {
     this.user.username = newUsername;
   }
