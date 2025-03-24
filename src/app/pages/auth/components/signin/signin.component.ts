@@ -25,18 +25,14 @@ export class SigninComponent {
   ) {}
 
   async signin() {
-    this.authService
-      .signinUser(this.username, this.email, this.password)
-      .subscribe({
-        next: (res: any) => {
-          if (res.status == '201') {
-            this.userService.setUser(res.data);
-            this.router.navigate(['']);
-          } else {
-            this.isErrorWhenSigning = true;
-            this.errorMessage = res.message;
-          }
-        },
-      });
+    let response = this.authService.signinUser(
+      this.username,
+      this.email,
+      this.password
+    );
+
+    if (response != '201') {
+      this.isErrorWhenSigning == true;
+    }
   }
 }

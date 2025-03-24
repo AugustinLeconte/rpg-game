@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 
 export interface User {
   id: string;
@@ -10,7 +10,9 @@ export interface User {
     position: { x: number; y: number };
   };
   wantNewsletter: boolean;
+  commands: Map<string, string>;
 }
+
 @Injectable({
   providedIn: 'root',
 })
@@ -20,7 +22,12 @@ export class UserService {
 
   constructor() {}
 
-  setUser(res: any) {
-    this.user.next(res);
+  updateUser(user: User) {
+    this.user.next(user);
+    localStorage.setItem('userId', user.id);
+  }
+
+  getUser() {
+    return this.user.value;
   }
 }

@@ -1,41 +1,51 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-
-export interface User {
-  id: string;
-  userName: string;
-  email: string;
-  commands: Map<string, string>;
-}
+import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+import { User, UserService } from '../../../../services/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private user = new BehaviorSubject<User>({} as User);
-  user$ = this.user.asObservable();
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
-  constructor(private http: HttpClient) {}
-
-  loginUser(contact: string, password: string) {
-    localStorage.setItem('userId', '123');
-    this.user.next({
-      id: '123',
-      userName: contact,
-      email: '',
-      commands: {} as Map<string, string>,
-    });
+  async loginUser(contact: string, password: string) {
     const variables = 'contact=' + contact + '&password=' + password;
-    return this.http.get('http://localhost:3000/users/login&' + variables);
+    this.http.get('http://localhost:3000/users/login&' + variables).subscribe({
+      next: (res: any) => {
+        this.userService.updateUser(res.data);
+        this.router.navigate(['']);
+      },
+    });
   }
 
   signinUser(username: string, email: string, password: string) {
-    return this.http.post('http://localhost:3000/users', {
-      username,
-      email,
-      password,
-      wantNewsletter: false,
-    });
+    let status: string = '201';
+    this.http
+      .post('http://localhost:3000/users', {
+        username,
+        email,
+        password,
+        wantNewsletter: false,
+      })
+      .subscribe({
+        next: (res: any) => {
+          this.userService.updateUser(res.data);
+          status = res.status.toString();
+          if (status === '201') this.router.navigate(['']);
+        },
+      });
+    return status;
+  }
+
+  async getUser(userId: string): Promise<User> {
+    return firstValueFrom(
+      this.http.get<User>('http://localhost:3000/users/' + userId)
+    );
   }
 }
