@@ -1,10 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import {
-  UserInterface,
-  UserInterfaceService,
-} from '../../../ingame/services/user-interface.service';
 import { FormsModule } from '@angular/forms';
+import { User, UserService } from '../../../../../services/user.service';
 
 @Component({
   selector: 'app-settings',
@@ -14,19 +11,19 @@ import { FormsModule } from '@angular/forms';
 })
 export class SettingsComponent implements OnInit {
   updatingName: boolean = false;
-  user: UserInterface = { username: '' };
+  user: User = {} as User;
   newUsername: string = '';
 
-  constructor(private userInterfaceService: UserInterfaceService) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.user = this.userInterfaceService.getUser();
+    this.user = this.userService.getUser();
     this.newUsername = this.user.username;
   }
 
   updateName() {
-    this.userInterfaceService.setUserName(this.newUsername);
     this.user.username = this.newUsername;
+    this.userService.updateUser(this.user);
     this.updatingName = false;
   }
 }

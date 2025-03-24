@@ -22,9 +22,18 @@ export class UserService {
 
   constructor() {}
 
-  updateUser(user: User) {
+  updateLocalUser(user: User) {
     this.user.next(user);
     localStorage.setItem('userId', user.id);
+  }
+
+  updateUser(user: User) {
+    //ici faire appel au backend et modifier le user
+    this.user.next(user);
+  }
+
+  setUserName(newUsername: string) {
+    this.user.getValue().username = newUsername;
   }
 
   getUser() {
