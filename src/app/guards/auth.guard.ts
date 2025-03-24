@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
     let userInfo = this.userService.getUser();
     if (userId && !userInfo.id) {
       const userValue = await this.authService.getUser(userId);
-      if (!userValue.id) return this.goToAuth();
+      if (userValue === null || !userValue.id) return this.goToAuth();
       else this.userService.updateUser(userValue);
       return true;
     } else if (userInfo.id) {

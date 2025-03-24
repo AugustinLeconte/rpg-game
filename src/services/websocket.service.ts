@@ -27,7 +27,6 @@ export class WebsocketService {
         (player) => player.socketId == this.playerService.getPlayer().socketId
       )[0];
       if (thisPlayer) this.playerService.setPlayer(thisPlayer);
-      console.log('reçu');
       this.players.next(players);
     });
 
