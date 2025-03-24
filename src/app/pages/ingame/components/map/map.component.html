@@ -1,0 +1,18 @@
+<div class="map">
+  <div *ngFor="let row of mapData; let rowIndex = index" class="row">
+    <div
+      *ngFor="let tile of row; let colIndex = index"
+      class="tile"
+      [ngClass]="tile"
+    >
+      <div *ngFor="let player of players">
+        <app-player
+          [player]="player"
+          *ngIf="
+            player.position.x === colIndex && player.position.y === rowIndex
+          "
+        ></app-player>
+      </div>
+    </div>
+  </div>
+</div>

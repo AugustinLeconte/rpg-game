@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { RessourcesWindowComponent } from '../components/ressources-window/ressources-window.component';
-import { MapComponent } from '../components/map/map.component';
+import { RessourcesWindowComponent } from './pages/ingame/components/UI/ressources-window/ressources-window.component';
+import { MapComponent } from './pages/ingame/components/map/map.component';
 
 @Component({
   selector: 'app-root',

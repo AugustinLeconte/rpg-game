@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
-import { Player, PlayerService } from './player-service';
+import {
+  Player,
+  PlayerService,
+} from '../app/pages/ingame/services/player-service';
 import { MapService } from '../app/pages/ingame/services/map-service';
 import { UserService } from './user.service';
 
@@ -25,11 +28,8 @@ export class WebsocketService {
     });
 
     this.socket.on('updatePlayers', (players: Player[]) => {
-      const thisPlayer = players.filter(
-        (player) => player.socketId == this.userService.getUser().socketId
-      )[0];
-      if (thisPlayer) this.playerService.setPlayers(thisPlayer);
       this.players.next(players);
+      this.playerService.setPlayers(players);
     });
 
     this.socket.on('connected', (socketId: string) => {
@@ -38,10 +38,6 @@ export class WebsocketService {
 
     this.socket.on('map', (map: string[][]) => {
       this.mapService.setMap(map);
-    });
-
-    this.socket.on('location', (position: { x: number; y: number }) => {
-      //console.log(position);
     });
   }
 

@@ -1,14 +1,13 @@
 import {
   Component,
   ElementRef,
-  HostListener,
+  Input,
   OnDestroy,
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Player, PlayerService } from '../../services/player-service';
-import { WebsocketService } from '../../services/websocket.service';
-import { User, UserService } from '../../services/user.service';
+import { Player } from '../../services/player-service';
+import { UserService } from '../../../../../services/user.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,22 +16,16 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./player.component.scss'],
 })
 export class PlayerComponent implements OnInit, OnDestroy {
-  private player!: Player;
   username: string = '';
   private userSubscription!: Subscription;
+  @Input() player!: Player;
 
   @ViewChild('playerCanvas', { static: true })
   canvasRef!: ElementRef<HTMLCanvasElement>;
 
-  constructor(
-    private playerService: PlayerService,
-    private userService: UserService
-  ) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.playerService.player$.subscribe((player) => {
-      this.player = player;
-    });
     this.userSubscription = this.userService.user$.subscribe((user) => {
       this.username = user.username;
     });
