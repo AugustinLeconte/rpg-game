@@ -4,18 +4,18 @@
       <h1>Créer une partie</h1>
     </button>
     <div *ngIf="showPartyCreation">
-      <label>Nom de la partie</label>
-      <input />
-      <label>Nombre de joueur</label>
-      <input />
+      <!-- <label for="partyName">Nom de la partie</label>
+      <input id="partyName" />
+      <label for="nbPlayersInParty">Nombre de joueur</label>
+      <input id="nbPlayersInParty" /> -->
       <button (click)="goToPage('game')">Créer</button>
     </div>
     <button (click)="showEnterCode = !showEnterCode">
       <h1>Rejoindre une partie</h1>
     </button>
     <div *ngIf="showEnterCode">
-      <label>Code: </label>
-      <input type="text" (ngModel)="(enteredCode)" />
+      <label for="partyCode">Code: </label>
+      <input id="partyCode" type="text" (ngModel)="(enteredCode)" />
     </div>
   </div>
   <div class="skinSelector">Personnaliser son skin</div>

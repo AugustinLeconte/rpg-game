@@ -54,16 +54,16 @@ export class PlayerComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.ctx = this.canvasRef.nativeElement.getContext('2d')!;
+    /*this.ctx = this.canvasRef.nativeElement.getContext('2d')!;
     this.spriteSheet.src = '../../assets/sprites/sprite1.png';
     this.frames = this.animationService.getFrames(
       this.skin,
       this.action as keyof AnimationFrames
     );
-    this.spriteSheet.onload = () => this.startAnimation();
+    this.spriteSheet.onload = () => this.startAnimation();*/
   }
 
-  startAnimation() {
+  /*startAnimation() {
     setInterval(() => {
       this.drawFrame(this.frames[this.frameIndex]);
       this.frameIndex = (this.frameIndex + 1) % this.frames.length;
@@ -88,7 +88,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
       frameWidth,
       frameHeight
     );
-  }
+  }*/
 
   private startMovingLoop() {
     if (this.isMoving) return;
@@ -102,7 +102,7 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
       this.pressedKeys.forEach((key) => {
         this.sendMoveCommand(key);
-        this.startAnimation();
+        //this.startAnimation();
       });
       requestAnimationFrame(moveLoop);
     };
