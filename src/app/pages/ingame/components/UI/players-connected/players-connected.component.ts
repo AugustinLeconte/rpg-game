@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Player } from '../../../../../services/player-service';
+import { Player } from '../../../../../../services/player-service';
 import { Observable, Subscription } from 'rxjs';
-import { WebsocketService } from '../../../../../services/websocket.service';
+import { WebsocketService } from '../../../../../../services/websocket.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

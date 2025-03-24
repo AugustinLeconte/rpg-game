@@ -6,23 +6,11 @@ import { PlayerComponent } from '../player/player.component';
 import { WebsocketService } from '../../services/websocket.service';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { PlayersConnectedComponent } from '../../app/pages/ingame/components/players-connected/players-connected.component';
-import { LevelComponent } from '../../app/pages/ingame/components/level/level.component';
-import { SpellBarComponent } from '../../app/pages/ingame/components/spell-bar/spell-bar.component';
-import { IngameChatComponent } from '../../app/pages/ingame/components/ingame-chat/ingame-chat.component';
 import { User, UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-map',
-  imports: [
-    CommonModule,
-    PlayerComponent,
-    FormsModule,
-    PlayersConnectedComponent,
-    LevelComponent,
-    SpellBarComponent,
-    IngameChatComponent,
-  ],
+  imports: [CommonModule, PlayerComponent, FormsModule],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss',
 })

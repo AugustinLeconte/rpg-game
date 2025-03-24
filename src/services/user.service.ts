@@ -11,6 +11,7 @@ export interface User {
   };
   wantNewsletter: boolean;
   commands: Map<string, string>;
+  socketId?: string | undefined;
 }
 
 @Injectable({
@@ -38,5 +39,18 @@ export class UserService {
 
   getUser() {
     return this.user.value;
+  }
+
+  addSocketId(socketId: string) {
+    this.user.next({
+      id: this.user.value.id,
+      username: this.user.value.username,
+      email: this.user.value.email,
+      password: this.user.value.password,
+      ingame: this.user.value.ingame,
+      wantNewsletter: this.user.value.wantNewsletter,
+      commands: this.user.value.commands,
+      socketId: socketId,
+    });
   }
 }

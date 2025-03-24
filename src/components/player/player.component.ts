@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs';
 })
 export class PlayerComponent implements OnInit, OnDestroy {
   private player!: Player;
-  user!: User;
+  username: string = '';
   private userSubscription!: Subscription;
 
   @ViewChild('playerCanvas', { static: true })
@@ -26,7 +26,6 @@ export class PlayerComponent implements OnInit, OnDestroy {
 
   constructor(
     private playerService: PlayerService,
-    private readonly wsService: WebsocketService,
     private userService: UserService
   ) {}
 
@@ -35,33 +34,8 @@ export class PlayerComponent implements OnInit, OnDestroy {
       this.player = player;
     });
     this.userSubscription = this.userService.user$.subscribe((user) => {
-      this.user = user;
+      this.username = user.username;
     });
-  }
-
-  @HostListener('window:keydown', ['$event'])
-  onKeyDown(event: KeyboardEvent) {
-    this.sendMoveCommand(event.key);
-  }
-
-  private sendMoveCommand(key: string) {
-    const direction = this.getDirectionFromKey(key);
-    if (direction) this.wsService.sendMove(this.player.socketId, direction);
-  }
-
-  private getDirectionFromKey(key: string): string | null {
-    const directions: { [key: string]: string } = {
-      ArrowUp: 'left',
-      ArrowDown: 'right',
-      ArrowLeft: 'up',
-      ArrowRight: 'down',
-      z: 'left',
-      s: 'right',
-      q: 'up',
-      d: 'down',
-    };
-
-    return directions[key] || null;
   }
 
   ngOnDestroy(): void {

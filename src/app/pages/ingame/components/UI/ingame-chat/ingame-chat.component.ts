@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UserService } from '../../../../../services/user.service';
+import { UserService } from '../../../../../../services/user.service';
 import { Subscription } from 'rxjs';
 
 @Component({

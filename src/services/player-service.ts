@@ -24,24 +24,7 @@ export class PlayerService {
 
   constructor() {}
 
-  addSocketId(socketId: string) {
-    this.player.next({
-      id: this.player.value.id,
-      username: this.player.value.username,
-      position: this.player.value.position,
-      socketId: socketId,
-    });
-  }
-
-  getPlayerPosition() {
-    return this.player.value.position;
-  }
-
-  setPlayer(player: Player) {
+  setPlayers(player: Player) {
     this.player.next(player);
-  }
-
-  getPlayer() {
-    return this.player.value;
   }
 }

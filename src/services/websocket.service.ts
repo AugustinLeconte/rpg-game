@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
 import { Player, PlayerService } from './player-service';
 import { MapService } from '../app/pages/ingame/services/map-service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,8 @@ export class WebsocketService {
 
   constructor(
     private mapService: MapService,
-    private readonly playerService: PlayerService
+    private readonly playerService: PlayerService,
+    private readonly userService: UserService
   ) {
     this.socket = io('http://localhost:3000');
 
@@ -24,14 +26,14 @@ export class WebsocketService {
 
     this.socket.on('updatePlayers', (players: Player[]) => {
       const thisPlayer = players.filter(
-        (player) => player.socketId == this.playerService.getPlayer().socketId
+        (player) => player.socketId == this.userService.getUser().socketId
       )[0];
-      if (thisPlayer) this.playerService.setPlayer(thisPlayer);
+      if (thisPlayer) this.playerService.setPlayers(thisPlayer);
       this.players.next(players);
     });
 
     this.socket.on('connected', (socketId: string) => {
-      this.playerService.addSocketId(socketId);
+      this.userService.addSocketId(socketId);
     });
 
     this.socket.on('map', (map: string[][]) => {

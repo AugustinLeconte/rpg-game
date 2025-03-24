@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GameMapComponent } from './game-map.component';
+import { MovementComponent } from './movement.component';
 
-describe('GameMapComponent', () => {
-  let component: GameMapComponent;
-  let fixture: ComponentFixture<GameMapComponent>;
+describe('MovementComponent', () => {
+  let component: MovementComponent;
+  let fixture: ComponentFixture<MovementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GameMapComponent]
+      imports: [MovementComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GameMapComponent);
+    fixture = TestBed.createComponent(MovementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
