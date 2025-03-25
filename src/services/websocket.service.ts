@@ -22,7 +22,9 @@ export class WebsocketService {
     private readonly playerService: PlayerService,
     private readonly userService: UserService
   ) {
-    this.socket = io(environment.misericordiaAPIURI);
+    this.socket = io(environment.misericordiaAPIURI, {
+      transports: ['polling'],
+    });
 
     this.socket.on('playerJoined', (player: Player) => {
       console.log(`Connecté en tant que ${player.username} (ID: ${player.id})`);
