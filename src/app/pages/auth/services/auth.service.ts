@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { User, UserService } from '../../../../services/user.service';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,18 +17,20 @@ export class AuthService {
 
   async loginUser(contact: string, password: string) {
     const variables = 'contact=' + contact + '&password=' + password;
-    this.http.get('http://localhost:3000/users/login&' + variables).subscribe({
-      next: (res: any) => {
-        this.userService.updateUser(res.data);
-        this.router.navigate(['']);
-      },
-    });
+    this.http
+      .get(environment.misericordiaAPIURI + 'users/login&' + variables)
+      .subscribe({
+        next: (res: any) => {
+          this.userService.updateUser(res.data);
+          this.router.navigate(['']);
+        },
+      });
   }
 
   signinUser(username: string, email: string, password: string) {
     let status: string = '201';
     this.http
-      .post('http://localhost:3000/users', {
+      .post(environment.misericordiaAPIURI + 'users', {
         username,
         email,
         password,
@@ -45,7 +48,7 @@ export class AuthService {
 
   async getUser(userId: string): Promise<User> {
     return firstValueFrom(
-      this.http.get<User>('http://localhost:3000/users/' + userId)
+      this.http.get<User>(environment.misericordiaAPIURI + 'users/' + userId)
     );
   }
 }

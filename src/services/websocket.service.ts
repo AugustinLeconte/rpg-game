@@ -7,6 +7,7 @@ import {
 } from '../app/pages/ingame/services/player-service';
 import { MapService } from '../app/pages/ingame/services/map-service';
 import { UserService } from './user.service';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,7 @@ export class WebsocketService {
     private readonly playerService: PlayerService,
     private readonly userService: UserService
   ) {
-    this.socket = io('http://localhost:3000');
+    this.socket = io(environment.misericordiaAPIURI);
 
     this.socket.on('playerJoined', (player: Player) => {
       console.log(`Connecté en tant que ${player.username} (ID: ${player.id})`);

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class MapService {
   constructor(private _http: HttpClient) {}
 
   fetchMap(): Observable<string[][]> {
-    return this._http.get<string[][]>('http://localhost:3000/map');
+    return this._http.get<string[][]>(environment.misericordiaAPIURI + 'map');
   }
 
   getMap(): string[][] {
