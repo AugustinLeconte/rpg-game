@@ -3,6 +3,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../../../../../services/user.service';
 import { Subscription } from 'rxjs';
+import { WebsocketService } from '../../../../../../services/websocket.service';
+import { Message, MessageService } from '../../../services/message.service';
 
 @Component({
   selector: 'app-ingame-chat',
@@ -14,13 +16,17 @@ export class IngameChatComponent implements OnInit, OnDestroy {
   typedMessage: string = '';
   userName: string = '';
   private userSubscription!: Subscription;
-  messages: Array<string> = [];
+  private messageSubscription!: Subscription;
+  messages: Array<Message> = [];
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private messageService: MessageService,
+    private websocketService: WebsocketService
+  ) {}
 
   sendMessage() {
-    this.messages.push(this.typedMessage);
-    console.log(this.messages);
+    this.websocketService.sendMessage(this.userName, this.typedMessage);
     this.typedMessage = '';
   }
 
@@ -28,9 +34,15 @@ export class IngameChatComponent implements OnInit, OnDestroy {
     this.userSubscription = this.userService.user$.subscribe((user) => {
       this.userName = user.username;
     });
+    this.messageSubscription = this.messageService.messages$.subscribe(
+      (message) => {
+        this.messages = message; //.reverse();
+      }
+    );
   }
 
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
+    this.messageSubscription.unsubscribe();
   }
 }

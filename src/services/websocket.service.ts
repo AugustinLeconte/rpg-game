@@ -8,6 +8,10 @@ import {
 import { MapService } from '../app/pages/ingame/services/map-service';
 import { UserService } from './user.service';
 import { environment } from '../environments/environment';
+import {
+  Message,
+  MessageService,
+} from '../app/pages/ingame/services/message.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +24,8 @@ export class WebsocketService {
   constructor(
     private mapService: MapService,
     private readonly playerService: PlayerService,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly messageService: MessageService
   ) {
     this.socket = io(environment.misericordiaAPIURI, {
       transports: ['polling'],
@@ -42,6 +47,10 @@ export class WebsocketService {
     this.socket.on('map', (map: string[][]) => {
       this.mapService.setMap(map);
     });
+
+    this.socket.on('messageSent', (messages: Array<Message>) => {
+      this.messageService.setMessages(messages);
+    });
   }
 
   joinGame(username: string) {
@@ -50,5 +59,9 @@ export class WebsocketService {
 
   sendMove(id: string, direction: string) {
     this.socket.emit('movePlayer', { id, direction });
+  }
+
+  sendMessage(username: string, message: string) {
+    this.socket.emit('messageFromFront', { username, message });
   }
 }

@@ -1,7 +1,7 @@
 <div class="chatContainer">
   <div class="messageList">
     <span *ngFor="let message of messages"
-      >{{ userName }} (10h02): {{ message }}</span
+      >{{ message.username }} ({{ message.hour }}): {{ message.message }}</span
     >
   </div>
   <input
