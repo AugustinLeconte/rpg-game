@@ -13,12 +13,17 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  isErrorWhenLogin: boolean = false;
+  errorMessage: string = 'Problème lors de la connexion';
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  async login() {
-    let result = await this.authService.loginUser(this.username, this.password);
-    console.log(result);
+  login() {
+    const response = this.authService.loginUser(this.username, this.password);
+
+    if (response != '200') {
+      this.isErrorWhenLogin == true;
+    }
     //this.router.navigate(['']);
   }
 }

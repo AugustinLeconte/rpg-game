@@ -29,7 +29,6 @@ export class UserService {
   }
 
   updateUser(user: User) {
-    //ici faire appel au backend et modifier le user
     this.user.next(user);
   }
 
