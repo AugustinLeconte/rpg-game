@@ -47,8 +47,8 @@ export class MapComponent {
 
     if (!this.user) return;
     if (this.user.username && this.user.username.trim()) {
-      this.wsService.joinGame(this.user.username);
-    } else this.wsService.joinGame('New Player');
+      this.wsService.joinGame(this.user.id, this.user.username);
+    } else this.wsService.joinGame('', 'New Player');
   }
 
   ngOnDestroy() {

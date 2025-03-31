@@ -36,7 +36,7 @@ export class IngameChatComponent implements OnInit, OnDestroy {
     });
     this.messageSubscription = this.messageService.messages$.subscribe(
       (message) => {
-        this.messages = message; //.reverse();
+        this.messages = message.reverse();
       }
     );
   }

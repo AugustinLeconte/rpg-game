@@ -17,4 +17,8 @@ export class MessageService {
   setMessages(messages: Message[]) {
     this.messages.next(messages);
   }
+
+  addMessage(message: Message) {
+    this.messages.next([...this.messages.value, message]);
+  }
 }

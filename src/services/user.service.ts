@@ -8,6 +8,7 @@ export interface User {
   password: string;
   ingame?: {
     position: { x: number; y: number };
+    direction: string;
   };
   wantNewsletter: boolean;
   commands: Map<string, string>;
@@ -34,6 +35,13 @@ export class UserService {
 
   setUserName(newUsername: string) {
     this.user.getValue().username = newUsername;
+  }
+
+  setUserIngame(ingame: {
+    position: { x: number; y: number };
+    direction: string;
+  }) {
+    this.user.getValue().ingame = ingame;
   }
 
   getUser() {

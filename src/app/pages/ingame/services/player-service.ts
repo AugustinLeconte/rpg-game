@@ -5,6 +5,7 @@ export interface Player {
   id: string;
   username: string;
   position: { x: number; y: number };
+  lastDirection: string;
 }
 
 @Injectable({
@@ -18,7 +19,7 @@ export class PlayerService {
     this.players.next(players);
   }
 
-  getPlayerFromId(playerId: string) {
-    return this.players.value.filter((player) => player.id == playerId);
+  getPlayerFromId(playerId: string): Player {
+    return this.players.value.filter((player) => player.id == playerId)[0];
   }
 }

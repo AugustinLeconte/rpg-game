@@ -32,12 +32,30 @@ export class WebsocketService {
     });
 
     this.socket.on('playerJoined', (player: Player) => {
-      console.log(`Connecté en tant que ${player.username} (ID: ${player.id})`);
+      let now = new Date();
+      this.messageService.addMessage({
+        username: 'Serveur',
+        message: 'Connecté au jeu',
+        hour:
+          now.getHours().toLocaleString() +
+          ':' +
+          (now.getMinutes() < 10
+            ? '0' + now.getMinutes().toLocaleString()
+            : now.getMinutes().toLocaleString()),
+      });
     });
 
     this.socket.on('updatePlayers', (players: Player[]) => {
       this.players.next(players);
       this.playerService.setPlayers(players);
+      const ourPlayer = this.playerService.getPlayerFromId(
+        userService.getUser().id
+      );
+      if (ourPlayer)
+        this.userService.setUserIngame({
+          position: ourPlayer.position,
+          direction: ourPlayer.lastDirection,
+        });
     });
 
     this.socket.on('connected', (socketId: string) => {
@@ -53,8 +71,8 @@ export class WebsocketService {
     });
   }
 
-  joinGame(username: string) {
-    this.socket.emit('playerJoin', { username });
+  joinGame(id: string, username: string) {
+    this.socket.emit('playerJoin', { id, username });
   }
 
   sendMove(id: string, direction: string) {
