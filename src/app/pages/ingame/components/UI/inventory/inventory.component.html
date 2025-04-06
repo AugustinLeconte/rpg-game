@@ -1,8 +1,24 @@
-<div class="inventoryContainer" *ngFor="let item of bag.items">
-  <div class="itemIcon">
+<div class="inventoryContainer">
+  <div class="itemIcon" *ngFor="let invItem of intentoryItems">
     <img src="../../../../../assets/images/farm.png" class="itemImage" />
-    <span class="itemCost">10</span><span class="itemKey">E</span>
-    <div class="itemDescription">{{ item.description }}</div>
+    <span class="itemCost">{{ invItem.durability }}</span
+    ><span class="itemKey">E</span>
+    <div class="itemDescription">{{ invItem.description }}</div>
+  </div>
+</div>
+
+<div class="bagContainer" *ngIf="isShowed">
+  <span class="bag-name"
+    ><u>{{ bag.name }}</u></span
+  >
+
+  <div class="slots">
+    <div class="item-list" *ngFor="let item of bag.items">
+      <div class="item">{{ item.name }}</div>
+    </div>
+    <div class="item-list" *ngFor="let index of emptySlots">
+      <div class="item"></div>
+    </div>
   </div>
 </div>
 

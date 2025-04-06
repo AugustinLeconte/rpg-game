@@ -36,6 +36,15 @@ export class BagService {
         isInInventory: true,
         description: 'utilisée pour couper du bois',
       },
+      {
+        id: '1',
+        name: 'sword',
+        durability: 10,
+        enchantment: '',
+        type: 'weapon',
+        isInInventory: true,
+        description: 'utilisée pour tuer des monstres ... ou des gens',
+      },
     ],
   } as Bag);
   bag$ = this.bag.asObservable();
