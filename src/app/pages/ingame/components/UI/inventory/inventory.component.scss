@@ -1,4 +1,4 @@
-.spellBarContainer {
+.inventoryContainer {
   position: fixed;
   bottom: 10px;
   right: calc(50vw - 300px);
@@ -12,14 +12,14 @@
   display: flex;
 }
 
-.spellIcon {
+.itemIcon {
   border: 1px solid white;
   width: 50px;
   height: 50px;
   margin-right: 5px;
 }
 
-.spellIcon:hover > .spellDescription {
+.itemIcon:hover > .itemDescription {
   display: block;
   background: black;
   padding: 2px;
@@ -30,26 +30,26 @@
   height: 50px;
 }
 
-.spellImage {
+.itemImage {
   position: relative;
   width: 49px;
   height: 49px;
 }
 
-.spellCost {
+.itemCost {
   position: relative;
   top: -20px;
   left: 3px;
   font-size: 13px;
 }
 
-.spellKey {
+.itemKey {
   position: relative;
   top: -20px;
   left: 27px;
   font-size: 12px;
 }
 
-.spellDescription {
+.itemDescription {
   display: none;
 }

@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SpellBarComponent } from './spell-bar.component';
+import { InventoryComponent } from './inventory.component';
 
 describe('SpellBarComponent', () => {
-  let component: SpellBarComponent;
-  let fixture: ComponentFixture<SpellBarComponent>;
+  let component: InventoryComponent;
+  let fixture: ComponentFixture<InventoryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SpellBarComponent]
-    })
-    .compileComponents();
+      imports: [InventoryComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(SpellBarComponent);
+    fixture = TestBed.createComponent(InventoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
