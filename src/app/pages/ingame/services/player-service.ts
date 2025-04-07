@@ -5,7 +5,8 @@ export interface Player {
   id: string;
   username: string;
   position: { x: number; y: number };
-  lastDirection: string;
+  skin?: string;
+  lastDirection: 'up' | 'down' | 'left' | 'right';
 }
 
 @Injectable({

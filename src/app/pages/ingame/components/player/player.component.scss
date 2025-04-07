@@ -6,19 +6,6 @@
   transition: transform 0.2s linear;
 }
 
-.walking {
-  animation: walk 0.8s steps(4) infinite;
-}
-
-@keyframes walk {
-  from {
-    background-position: 0px 0px;
-  }
-  to {
-    background-position: -128px 0px;
-  }
-}
-
 .username {
   position: relative;
   top: -68px;

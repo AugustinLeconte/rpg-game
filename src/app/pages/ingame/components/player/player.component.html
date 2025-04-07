@@ -1,5 +1,8 @@
 <div class="playerObject">
-  <div class="player"></div>
+  <div
+    class="player"
+    [ngStyle]="{ 'background-position': getBackgroundPosition() }"
+  ></div>
   <div class="username">{{ player.username }}</div>
 </div>
 
