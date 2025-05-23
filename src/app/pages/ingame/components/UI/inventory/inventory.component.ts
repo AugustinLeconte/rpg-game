@@ -16,6 +16,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
   bagSubscription!: Subscription;
   isShowed: boolean = false;
   emptySlots: number[] = [];
+  selectedItem!: Item;
 
   constructor(private bagService: BagService) {}
 
@@ -43,5 +44,17 @@ export class InventoryComponent implements OnInit, OnDestroy {
   @HostListener('window:keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
     if (event.key == 'i') this.isShowed = !this.isShowed;
+  }
+
+  selectItem(item: Item) {
+    const element = document.getElementById('menuItem-' + item.id);
+    if (element) {
+      element.hidden = !element.hidden;
+      this.selectedItem = item;
+    }
+  }
+
+  toInventory(isTrue: boolean) {
+    this.bagService.setItemToInventory(this.selectedItem.id, isTrue);
   }
 }

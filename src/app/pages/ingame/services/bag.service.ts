@@ -38,11 +38,11 @@ export class BagService {
       },
       {
         id: '1',
-        name: 'sword',
+        name: 'barrack',
         durability: 10,
         enchantment: '',
         type: 'weapon',
-        isInInventory: true,
+        isInInventory: false,
         description: 'utilisée pour tuer des monstres ... ou des gens',
       },
     ],

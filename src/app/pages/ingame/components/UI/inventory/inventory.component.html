@@ -1,6 +1,13 @@
 <div class="inventoryContainer">
-  <div class="itemIcon" *ngFor="let invItem of intentoryItems">
-    <img src="../../../../../assets/images/farm.png" class="itemImage" />
+  <div
+    class="itemIcon"
+    (click)="selectItem(invItem)"
+    *ngFor="let invItem of intentoryItems"
+  >
+    <img
+      src="../../../../../assets/images/{{ invItem.name }}.png"
+      class="itemImage"
+    />
     <span class="itemCost">{{ invItem.durability }}</span
     ><span class="itemKey">E</span>
     <div class="itemDescription">{{ invItem.description }}</div>
@@ -14,7 +21,20 @@
 
   <div class="slots">
     <div class="item-list" *ngFor="let item of bag.items">
-      <div class="item">{{ item.name }}</div>
+      <div class="item" (click)="selectItem(item)">
+        <img
+          class="inventoryImage"
+          src="../../../../../assets/images/{{ item.name }}.png"
+        />
+      </div>
+      <div class="menuItem" hidden id="menuItem-{{ item.id }}">
+        <button *ngIf="!item.isInInventory" (click)="toInventory(true)">
+          Ajouter à l'inventaire
+        </button>
+        <button *ngIf="item.isInInventory" (click)="toInventory(false)">
+          Supprimer de l'inventaire
+        </button>
+      </div>
     </div>
     <div class="item-list" *ngFor="let index of emptySlots">
       <div class="item"></div>
